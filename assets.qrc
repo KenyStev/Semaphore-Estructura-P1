@@ -1,0 +1,46 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Estrella.png</file>
+        <file>street.png</file>
+        <file>redstate.png</file>
+        <file>yellowstate.png</file>
+        <file>greenstate.png</file>
+        <file>Ambulancia.png</file>
+        <file>Bus.png</file>
+        <file>Chepo.png</file>
+        <file>Furgon.png</file>
+        <file>Turismo.png</file>
+        <file>Turismo_izq.png</file>
+        <file>greenstate_izq.png</file>
+        <file>redstate_izq.png</file>
+        <file>yellowstate_izq.png</file>
+        <file>Ambulancia_der.png</file>
+        <file>Ambulancia_down.png</file>
+        <file>Ambulancia_izq.png</file>
+        <file>Ambulancia_up.png</file>
+        <file>Bus_der.png</file>
+        <file>Bus_down.png</file>
+        <file>Bus_izq.png</file>
+        <file>Bus_up.png</file>
+        <file>Chepo_der.png</file>
+        <file>Chepo_down.png</file>
+        <file>Chepo_izq.png</file>
+        <file>Chepo_up.png</file>
+        <file>Furgon_der.png</file>
+        <file>Furgon_down.png</file>
+        <file>Furgon_izq.png</file>
+        <file>Furgon_up.png</file>
+        <file>Turismo_der.png</file>
+        <file>Turismo_down.png</file>
+        <file>Turismo_up.png</file>
+        <file>greenstate_der.png</file>
+        <file>redstate_der.png</file>
+        <file>yellowstate_der.png</file>
+        <file>greenstate_down.png</file>
+        <file>greenstate_up.png</file>
+        <file>redstate_down.png</file>
+        <file>redstate_up.png</file>
+        <file>yellowstate_down.png</file>
+        <file>yellowstate_up.png</file>
+    </qresource>
+</RCC>
