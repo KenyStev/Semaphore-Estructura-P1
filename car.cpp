@@ -8,8 +8,11 @@ Car::Car(Type_Car t,bool pr,int bl,QString n,const QString& path, QGraphicsItem*
     name = n;
     next = NULL;
     moving = false;
-    v = 0.5;
-    //    cout<<"width: "<<imagen->size().width()<<endl;
+    checked = false;
+    //1.3 a esta velocidad cruza en 1 seg
+    //0.13 a esta velocidad cruza en 10 seg
+    v = 1.3;
+    vxy=0;
 }
 
 void Car::setWay(WAY w)
@@ -99,6 +102,21 @@ void Car::setWay(WAY w)
     }
 }
 
+void Car::movingON()
+{
+    moving=true;
+}
+
+void Car::movingOFF()
+{
+    moving = false;
+}
+
+void Car::setVXY(int s)
+{
+    vxy = v/s;
+}
+
 void Car::logica()
 {
     if(moving)
@@ -107,7 +125,19 @@ void Car::logica()
         float y = position().y();
         switch (way) {
         case IZQ:
-            x-=v;
+            x-=vxy;
+            setPosition(QPointF(x,y));
+            break;
+        case DER:
+            x+=vxy;
+            setPosition(QPointF(x,y));
+            break;
+        case DOWN:
+            y+=vxy;
+            setPosition(QPointF(x,y));
+            break;
+        case UP:
+            y-=vxy;
             setPosition(QPointF(x,y));
             break;
         }
@@ -125,32 +155,16 @@ Turismo::Turismo() : Car(Type_Car::TURISNO,false,1,"Turismo",":Turismo.png")
 Turismo::Turismo(WAY w) : Turismo()
 {
     setWay(w);
-    v = 81.25;
-//    setVelocity(QPointF(81.25,81.25));
-//    moving=true;
 }
 
-//void Turismo::logica()
-//{
-//    if(moving)
-//    {
-//        float x = position().x();
-//        float y = position().y();
-//        switch (way) {
-//        case IZQ:
-//            x-=v;
-//            setPosition(QPointF(x,y));
-//            break;
-//        }
-//    }
-//}
-
-void Turismo::setMoving()
+int Turismo::setMoving()
 {
     srand(time(NULL));
 
-    int t = rand()%3 + 2;
-    moving=true;
+    int t = rand()%3 + 3;
+    vxy = v/t;
+    return t;
+//    moving=true;
 }
 
 /**
@@ -172,12 +186,14 @@ Ambulancia::Ambulancia(WAY w) : Ambulancia()
 
 //}
 
-void Ambulancia::setMoving()
+int Ambulancia::setMoving()
 {
     srand(time(NULL));
 
     int t = rand()%3 + 2;
-    moving=true;
+    vxy = v/t;
+    return t;
+//    moving=true;
 }
 
 /**
@@ -199,12 +215,14 @@ Chepo::Chepo(WAY w) : Chepo()
 
 //}
 
-void Chepo::setMoving()
+int Chepo::setMoving()
 {
     srand(time(NULL));
 
     int t = rand()%3 + 2;
-    moving=true;
+    vxy = v/t;
+    return t;
+//    moving=true;
 }
 
 /**
@@ -226,12 +244,14 @@ Bus::Bus(WAY w) : Bus()
 
 //}
 
-void Bus::setMoving()
+int Bus::setMoving()
 {
     srand(time(NULL));
 
-    int t = rand()%3 + 2;
-    moving=true;
+    int t = rand()%3 + 1;
+    vxy = v/t;
+    return t;
+//    moving=true;
 }
 
 /**
@@ -254,10 +274,12 @@ Furgon::Furgon(WAY w) : Furgon()
 
 //}
 
-void Furgon::setMoving()
+int Furgon::setMoving()
 {
     srand(time(NULL));
 
-    int t = rand()%3 + 2;
-    moving=true;
+    int t = rand()%2 + 4;
+    vxy = v/t;
+    return t;
+//    moving=true;
 }

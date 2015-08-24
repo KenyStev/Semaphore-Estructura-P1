@@ -27,14 +27,17 @@ public:
     Type_Car type;
     QString name;
     WAY way;
-    bool moving;
+    bool moving,checked;
 
-    float v;
+    float v, vxy;
 
     Car *next;
 
     void setWay(WAY);
-    virtual void setMoving()=0;
+    void movingON();
+    void movingOFF();
+    void setVXY(int s);
+    virtual int setMoving()=0;
 
     void logica();
 };
@@ -45,7 +48,7 @@ public:
     Turismo();
     Turismo(WAY);
 //    void logica();
-    void setMoving();
+    int setMoving();
 };
 
 class Ambulancia : public Car
@@ -54,7 +57,7 @@ public:
     Ambulancia();
     Ambulancia(WAY);
 //    void logica();
-    void setMoving();
+    int setMoving();
 };
 
 class Chepo : public Car
@@ -63,7 +66,7 @@ public:
     Chepo();
     Chepo(WAY);
 //    void logica();
-    void setMoving();
+    int setMoving();
 };
 
 class Bus : public Car
@@ -72,7 +75,7 @@ public:
     Bus();
     Bus(WAY);
 //    void logica();
-    void setMoving();
+    int setMoving();
 };
 
 class Furgon : public Car
@@ -81,7 +84,7 @@ public:
     Furgon();
     Furgon(WAY);
 //    void logica();
-    void setMoving();
+    int setMoving();
 };
 
 #endif // CAR_H

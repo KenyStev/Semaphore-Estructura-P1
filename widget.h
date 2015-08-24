@@ -35,6 +35,7 @@ signals:
     void update();
 private slots:
 
+    void on_actionLogs_triggered();
 };
 
 #endif // WIDGET_H

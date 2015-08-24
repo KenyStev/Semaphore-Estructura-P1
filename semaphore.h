@@ -18,9 +18,11 @@ public:
     void setEstados(WAY);
 
     bool isActivo(){return activo;}
+    bool ableToCross(int);
 
 private:
     int time;
+    int fullTime,range;
     int estado;
     bool activo;
     vector<QPixmap*> estados;

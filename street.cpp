@@ -11,21 +11,9 @@ Street::Street(WAY w,int s) : MyItem("")
 
     cola1 = new Queue(w);
     cola2 = new Queue(w);
-//    cola1->push(new Turismo(IZQ));
-//    cola1->push(new Turismo(IZQ));
-//    cola1->push(new Furgon());
-//    cola1->push(new Turismo(IZQ));
 
     pila1 = new Stack<Car*>(w);
     pila2 = new Stack<Car*>(w);
-
-//    pila1->push(new Turismo(IZQ));
-//    pila2->push(new Turismo(IZQ));
-//    pila1->push(new Turismo(DER));
-//    pila2->push(new Turismo(DER));
-
-//    crossing_1 = NULL;
-//    crossing_2 = NULL;
 
     frame = 0;
     secuence=s;
@@ -39,64 +27,50 @@ Car *Street::getNewCar()
     {
         int which_cola = rand()%2 + 1;
         int which_car =  rand()%5;
+        Car*newCar;
         switch (which_cola) {
         case 1:
             switch (which_car) {
             case 0:
-                cola1->push(new Turismo(way));
-
-//                pila1->push(new Turismo(way));
+                newCar = new Turismo(way);
                 break;
             case 1:
-                cola1->push(new Ambulancia(way));
-
-//                pila1->push(new Ambulancia(way));
+                newCar = new Ambulancia(way);
                 break;
             case 2:
-                cola1->push(new Chepo(way));
-
-//                pila1->push(new Chepo(way));
+                newCar = new Chepo(way);
                 break;
             case 3:
-                cola1->push(new Bus(way));
-
-//                pila1->push(new Bus(way));
+                newCar = new Bus(way);
                 break;
             case 4:
-                cola1->push(new Furgon(way));
-
-//                pila1->push(new Furgon(way));
+                newCar = new Furgon(way);
                 break;
             }
+            if(way!=IZQ){ //probando buses
+            newCar->setPosition(*posColas[0]);
+            cola1->push(newCar);}
             break;
         case 2:
             switch (which_car) {
             case 0:
-                cola2->push(new Turismo(way));
-
-//                pila2->push(new Turismo(way));
+                newCar = new Turismo(way);
                 break;
             case 1:
-                cola2->push(new Ambulancia(way));
-
-//                pila2->push(new Ambulancia(way));
+                newCar = new Ambulancia(way);
                 break;
             case 2:
-                cola2->push(new Chepo(way));
-
-//                pila2->push(new Chepo(way));
+                newCar = new Chepo(way);
                 break;
             case 3:
-                cola2->push(new Bus(way));
-
-//                pila2->push(new Bus(way));
+                newCar = new Bus(way);
                 break;
             case 4:
-                cola2->push(new Furgon(way));
-
-//                pila2->push(new Furgon(way));
+                newCar = new Furgon(way);
                 break;
             }
+            newCar->setPosition(*posColas[1]);
+            cola2->push(newCar);
             break;
         }
     }
@@ -105,25 +79,11 @@ Car *Street::getNewCar()
 void Street::logica()
 {
     getNewCar();
-    //draw(cola1->first(),NULL);
 
     semaphore->logica();
-//    cross_cars();
-
-//    if(cola1->first())
-//    {
-//        cola1->first()->logica();
-//    }
-//    if(cola2->first())
-//        cola2->first()->logica();
 
     frame++;
 }
-
-//void Street::draw(Car*q,Car*p)
-//{
-
-//}
 
 void Street::setSemaphore(WAY w)
 {
@@ -207,37 +167,13 @@ void Street::turnOff()
     semaphore->turnOff();
 }
 
-//void Street::cross_cars()
-//{
-//    if(semaphore->isActivo())
-//    {
-//        if(crossing_1)
-//        {
-//            if(crossing_1->moving)
-//            {
-//                crossing_1->logica();
-//            }
-//        }else{
-////            crossing_1 = cola1->pop();
-//            if(crossing_1)
-//            {
-//                crossing_1->setMoving();
-//                crossing_1->moving=true;
-//            }
-//        }
-
-//        if(crossing_2)
-//        {
-
-//        }else{
-//            crossing_2 = cola2->pop();
-//        }
-//    }
-//}
+bool Street::ableToCross(int seg)
+{
+    return semaphore->ableToCross(seg);
+}
 
 void Street::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-//    mutex->lock();
     float x = 0;
     float y = 0;
 
@@ -286,7 +222,6 @@ void Street::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
             if(i)
                 tmp = pila2->top();
 
-            //posPilas no llena
             x = posPilas[i]->x();
             y = posPilas[i]->y();
 
@@ -320,12 +255,6 @@ void Street::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
         }
     }
 
-//    if(crossing_1)
-//        crossing_1->paint(painter,option,widget);
-//    if(crossing_2)
-//        crossing_2->paint(painter,option,widget);
-
     semaphore->paint(painter,option,widget);
-//    mutex->unlock();
 }
 

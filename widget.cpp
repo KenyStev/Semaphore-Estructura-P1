@@ -14,6 +14,7 @@ widget::widget(QMainWindow *parent) :
     ui(new Ui::widget)
 {
     ui->setupUi(this);
+    showFullScreen();
     thread = new MyThread(this);
 //    scene = new MyScene(this);
 //    s = new Background(":street.png");
@@ -61,7 +62,7 @@ widget::widget(QMainWindow *parent) :
 //    connect(this,&widget::update, scene,&MyScene::onUpdate);
 //    thread->start(MSEC,QThread::HighestPriority);
 
-    cross = new Cross(this,thread);
+    cross = new Cross(this);
     ui->graphicsView->setScene(cross);
 
     layout()->setMargin(0);
@@ -75,4 +76,9 @@ widget::widget(QMainWindow *parent) :
 widget::~widget()
 {
     delete ui;
+}
+
+void widget::on_actionLogs_triggered()
+{
+    //llamar logs widget
 }

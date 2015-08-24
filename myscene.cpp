@@ -29,15 +29,18 @@ void MyScene::addActor(MyItem *actor){
 
 void MyScene::removeActor(MyItem *actor)
 {
-    for(vector<MyItem*>::iterator i=actores.begin();
-        i!=actores.end();i++)
+    if(actor)
     {
-        if(actor==*i)
+        for(vector<MyItem*>::iterator i=actores.begin();
+            i!=actores.end();i++)
         {
-            actores.erase(i);
-            break;
+            if(actor==*i)
+            {
+                actores.erase(i);
+                break;
+            }
         }
+        removeItem(actor);
     }
-    removeItem(actor);
 }
 
