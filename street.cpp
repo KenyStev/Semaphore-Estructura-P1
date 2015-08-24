@@ -22,7 +22,7 @@ Street::Street(WAY w,int s) : MyItem("")
 
 Car *Street::getNewCar()
 {
-    srand(time(NULL));
+    //srand(time(NULL));
     if(frame!=0 && frame%secuence==0)
     {
         int which_cola = rand()%2 + 1;
@@ -224,35 +224,92 @@ void Street::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
         {
             if(i)
                 tmp = pila2->top();
+            /*if(tmp)
+            {
+                switch (way) {
+                case IZQ:
+                    x = tmp->position().x();
+                    if(x<100)
+                    {
+                        if(i)
+                            tmp = pila2->top();
+                        else
+                            tmp = pila1->pop();
+                        Car*t=tmp;
+//                        delete t;
+                        tmp=NULL;
+//                        return;
+                    }
+                    break;
+                case DER:
+                    x = tmp->position().x();
+                    if(x>1300)
+                    {
+//                        if(i)
+//                            tmp = pila2->top();
+//                        else
+//                            tmp = pila1->pop();
+////                        delete tmp;
+//                        return;
+                    }
+                    break;
+                case DOWN:
+                    y = tmp->position().y();
+                    if(y<0)
+                    {
+//                        if(i)
+//                            tmp = pila2->top();
+//                        else
+//                            tmp = pila1->pop();
+////                        delete tmp;
+//                        return;
+                    }
+                    break;
+                case UP:
+                    y = tmp->position().y();
+                    if(y>700)
+                    {
+//                        if(i)
+//                            tmp = pila2->top();
+//                        else
+//                            tmp = pila1->pop();
+////                        delete tmp;
+//                        return;
+                    }
+                    break;
+                }
+            }*/
 
             x = posPilas[i]->x();
             y = posPilas[i]->y();
 
             while(tmp)
             {
-                switch (way) {
-                case IZQ:
-                    x -= tmp->imagen->size().width();
-                    tmp->setPosition(QPointF(x,y));
-                    tmp->paint(painter,option,widget);
-                    break;
-                case DER:
-                    tmp->setPosition(QPointF(x,y));
-                    tmp->paint(painter,option,widget);
-                    x += tmp->imagen->size().width();
-                    break;
-                case DOWN:
-
-                    tmp->setPosition(QPointF(x,y));
-                    tmp->paint(painter,option,widget);
-                    y += tmp->imagen->size().height();
-                    break;
-                case UP:
-                    y -= tmp->imagen->size().height();
-                    tmp->setPosition(QPointF(x,y));
-                    tmp->paint(painter,option,widget);
-                    break;
-                }
+//                tmp->movingON();
+                tmp->logica();
+                tmp->paint(painter,option,widget);
+//                switch (way) {
+//                case IZQ:
+//                    x -= tmp->imagen->size().width();
+//                    tmp->setPosition(QPointF(x,y));
+//                    tmp->paint(painter,option,widget);
+//                    break;
+//                case DER:
+//                    tmp->setPosition(QPointF(x,y));
+//                    tmp->paint(painter,option,widget);
+//                    x += tmp->imagen->size().width();
+//                    break;
+//                case DOWN:
+//                    tmp->setPosition(QPointF(x,y));
+//                    tmp->paint(painter,option,widget);
+//                    y += tmp->imagen->size().height();
+//                    break;
+//                case UP:
+//                    y -= tmp->imagen->size().height();
+//                    tmp->setPosition(QPointF(x,y));
+//                    tmp->paint(painter,option,widget);
+//                    break;
+//                }
                 tmp = tmp->next;
             }
         }

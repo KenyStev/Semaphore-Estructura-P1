@@ -9,10 +9,15 @@ Cross::Cross(QObject *parent) : MyScene(parent)
 //    east = new Street(IZQ,1500);
 //    west = new Street(DER,1000);
 
-    north = new Street(UP,400);
-    south = new Street(DOWN,300);
-    east = new Street(IZQ,250);
-    west = new Street(DER,200);
+    north = new Street(UP,600);
+    south = new Street(DOWN,800);
+    east = new Street(IZQ,750);
+    west = new Street(DER,700);
+
+//    north = new Street(UP,400);
+//    south = new Street(DOWN,300);
+//    east = new Street(IZQ,250);
+//    west = new Street(DER,200);
 
     logs = new Stack<Log*>();
 
@@ -48,6 +53,8 @@ Cross::Cross(QObject *parent) : MyScene(parent)
     crossing=false;
     accident = false;
     quit_time=1000;
+    crachesPos = new QPointF(538.762,250.705);
+    srand(time(NULL));
 }
 
 void Cross::onUpdate()
@@ -247,7 +254,7 @@ void Cross::cross_cars()
                         !cross_e_1->checked)
                 {
                     cross_e_1->checked=true;
-                    srand(time(NULL));
+                    //srand(time(NULL));
                     can_Cross = rand()%11;
                     cout<<"puede cruzar: "<<crossInRed[can_Cross]<<endl;
                     if(crossInRed[can_Cross])
@@ -258,7 +265,7 @@ void Cross::cross_cars()
                         addActor(cross_e_1);
                         cross_e_1->movingON();
 
-                        checkColisions(cross_e_1,&e1,cross_n_1,&n1,cross_n_2,&n2,cross_s_1,&s1,cross_s_2,&s2);
+                        checkColisions(east,cross_e_1,&e1,cross_n_1,&n1,cross_n_2,&n2,cross_s_1,&s1,cross_s_2,&s2);
                     }else{
                         cross_e_1 = NULL;
                     }
@@ -267,7 +274,7 @@ void Cross::cross_cars()
                 }
             }else{
                 if(cross_e_1->type == BUS)
-                    checkColisions(cross_e_1,&e1,cross_n_1,&n1,cross_n_2,&n2,cross_s_1,&s1,cross_s_2,&s2);
+                    checkColisions(east,cross_e_1,&e1,cross_n_1,&n1,cross_n_2,&n2,cross_s_1,&s1,cross_s_2,&s2);
             }
             if(!cross_e_2)
             {
@@ -276,7 +283,7 @@ void Cross::cross_cars()
                         !cross_e_2->checked)
                 {
                     cross_e_2->checked=true;
-                    srand(time(NULL));
+                    //srand(time(NULL));
                     can_Cross = rand()%11;
                     cout<<"puede cruzar: "<<crossInRed[can_Cross]<<endl;
                     if(crossInRed[can_Cross])
@@ -287,7 +294,7 @@ void Cross::cross_cars()
                         addActor(cross_e_2);
                         cross_e_2->movingON();
 
-                        checkColisions(cross_e_2,&e2,cross_n_1,&n1,cross_n_2,&n2,cross_s_1,&s1,cross_s_2,&s2);
+                        checkColisions(east,cross_e_2,&e2,cross_n_1,&n1,cross_n_2,&n2,cross_s_1,&s1,cross_s_2,&s2);
                     }else{
                         cross_e_2 = NULL;
                     }
@@ -296,7 +303,7 @@ void Cross::cross_cars()
                 }
             }else{
                 if(cross_e_2->type == BUS)
-                    checkColisions(cross_e_2,&e2,cross_n_1,&n1,cross_n_2,&n2,cross_s_1,&s1,cross_s_2,&s2);
+                    checkColisions(east,cross_e_2,&e2,cross_n_1,&n1,cross_n_2,&n2,cross_s_1,&s1,cross_s_2,&s2);
             }
 
             //west
@@ -307,7 +314,7 @@ void Cross::cross_cars()
                         !cross_w_1->checked)
                 {
                     cross_w_1->checked=true;
-                    srand(time(NULL));
+                    //srand(time(NULL));
                     can_Cross = rand()%11;
                     cout<<"puede cruzar: "<<crossInRed[can_Cross]<<endl;
                     if(crossInRed[can_Cross])
@@ -318,7 +325,7 @@ void Cross::cross_cars()
                         addActor(cross_w_1);
                         cross_w_1->movingON();
 
-                        checkColisions(cross_w_1,&w1,cross_n_1,&n1,cross_n_2,&n2,cross_s_1,&s1,cross_s_2,&s2);
+                        checkColisions(west,cross_w_1,&w1,cross_n_1,&n1,cross_n_2,&n2,cross_s_1,&s1,cross_s_2,&s2);
                     }else{
                         cross_w_1 = NULL;
                     }
@@ -327,7 +334,7 @@ void Cross::cross_cars()
                 }
             }else{
                 if(cross_w_1->type == BUS)
-                    checkColisions(cross_w_1,&w1,cross_n_1,&n1,cross_n_2,&n2,cross_s_1,&s1,cross_s_2,&s2);
+                    checkColisions(west,cross_w_1,&w1,cross_n_1,&n1,cross_n_2,&n2,cross_s_1,&s1,cross_s_2,&s2);
             }
             if(!cross_w_2)
             {
@@ -336,7 +343,7 @@ void Cross::cross_cars()
                         !cross_w_2->checked)
                 {
                     cross_w_2->checked=true;
-                    srand(time(NULL));
+                    //srand(time(NULL));
                     can_Cross = rand()%11;
                     cout<<"puede cruzar: "<<crossInRed[can_Cross]<<endl;
                     if(crossInRed[can_Cross])
@@ -347,7 +354,7 @@ void Cross::cross_cars()
                         addActor(cross_w_2);
                         cross_w_2->movingON();
 
-                        checkColisions(cross_w_2,&w2,cross_n_1,&n1,cross_n_2,&n2,cross_s_1,&s1,cross_s_2,&s2);
+                        checkColisions(west,cross_w_2,&w2,cross_n_1,&n1,cross_n_2,&n2,cross_s_1,&s1,cross_s_2,&s2);
                     }else{
                         cross_w_2 = NULL;
                     }
@@ -356,7 +363,7 @@ void Cross::cross_cars()
                 }
             }else{
                 if(cross_w_2->type == BUS)
-                    checkColisions(cross_w_2,&w2,cross_n_1,&n1,cross_n_2,&n2,cross_s_1,&s1,cross_s_2,&s2);
+                    checkColisions(west,cross_w_2,&w2,cross_n_1,&n1,cross_n_2,&n2,cross_s_1,&s1,cross_s_2,&s2);
             }
         }
 
@@ -421,7 +428,7 @@ void Cross::cross_cars()
                         !cross_n_1->checked)
                 {
                     cross_n_1->checked=true;
-                    srand(time(NULL));
+                    //srand(time(NULL));
                     can_Cross = rand()%11;
                     cout<<"puede cruzar: "<<crossInRed[can_Cross]<<endl;
                     if(crossInRed[can_Cross])
@@ -432,7 +439,7 @@ void Cross::cross_cars()
                         addActor(cross_n_1);
                         cross_n_1->movingON();
 
-                        checkColisions(cross_n_1,&n1,cross_e_1,&e1,cross_e_2,&e2,cross_w_1,&w1,cross_w_2,&w2);
+                        checkColisions(north,cross_n_1,&n1,cross_e_1,&e1,cross_e_2,&e2,cross_w_1,&w1,cross_w_2,&w2);
                     }else{
                         cross_n_1 = NULL;
                     }
@@ -441,7 +448,7 @@ void Cross::cross_cars()
                 }
             }else{
                 if(cross_n_1->type == BUS)
-                    checkColisions(cross_n_1,&n1,cross_e_1,&e1,cross_e_2,&e2,cross_w_1,&w1,cross_w_2,&w2);
+                    checkColisions(north,cross_n_1,&n1,cross_e_1,&e1,cross_e_2,&e2,cross_w_1,&w1,cross_w_2,&w2);
             }
             if(!cross_n_2)
             {
@@ -450,7 +457,7 @@ void Cross::cross_cars()
                         !cross_n_2->checked)
                 {
                     cross_n_2->checked=true;
-                    srand(time(NULL));
+                    //srand(time(NULL));
                     can_Cross = rand()%11;
                     cout<<"puede cruzar: "<<crossInRed[can_Cross]<<endl;
                     if(crossInRed[can_Cross])
@@ -461,7 +468,7 @@ void Cross::cross_cars()
                         addActor(cross_n_2);
                         cross_n_2->movingON();
 
-                        checkColisions(cross_n_2,&n2,cross_e_1,&e1,cross_e_2,&e2,cross_w_1,&w1,cross_w_2,&w2);
+                        checkColisions(north,cross_n_2,&n2,cross_e_1,&e1,cross_e_2,&e2,cross_w_1,&w1,cross_w_2,&w2);
                     }else{
                         cross_n_2 = NULL;
                     }
@@ -470,7 +477,7 @@ void Cross::cross_cars()
                 }
             }else{
                 if(cross_n_2->type == BUS)
-                    checkColisions(cross_n_2,&n2,cross_e_1,&e1,cross_e_2,&e2,cross_w_1,&w1,cross_w_2,&w2);
+                    checkColisions(north,cross_n_2,&n2,cross_e_1,&e1,cross_e_2,&e2,cross_w_1,&w1,cross_w_2,&w2);
             }
 
             //south
@@ -481,7 +488,7 @@ void Cross::cross_cars()
                         !cross_s_1->checked)
                 {
                     cross_s_1->checked=true;
-                    srand(time(NULL));
+                    //srand(time(NULL));
                     can_Cross = rand()%11;
                     cout<<"puede cruzar: "<<crossInRed[can_Cross]<<endl;
                     if(crossInRed[can_Cross])
@@ -492,7 +499,7 @@ void Cross::cross_cars()
                         addActor(cross_s_1);
                         cross_s_1->movingON();
 
-                        checkColisions(cross_s_1,&s1,cross_e_1,&e1,cross_e_2,&e2,cross_w_1,&w1,cross_w_2,&w2);
+                        checkColisions(south,cross_s_1,&s1,cross_e_1,&e1,cross_e_2,&e2,cross_w_1,&w1,cross_w_2,&w2);
                     }else{
                         cross_s_1 = NULL;
                     }
@@ -501,7 +508,7 @@ void Cross::cross_cars()
                 }
             }else{
                 if(cross_s_1->type == BUS)
-                    checkColisions(cross_s_1,&s1,cross_e_1,&e1,cross_e_2,&e2,cross_w_1,&w1,cross_w_2,&w2);
+                    checkColisions(south,cross_s_1,&s1,cross_e_1,&e1,cross_e_2,&e2,cross_w_1,&w1,cross_w_2,&w2);
             }
             if(!cross_s_2)
             {
@@ -510,7 +517,7 @@ void Cross::cross_cars()
                         !cross_s_2->checked)
                 {
                     cross_s_2->checked=true;
-                    srand(time(NULL));
+                    //srand(time(NULL));
                     can_Cross = rand()%11;
                     cout<<"puede cruzar: "<<crossInRed[can_Cross]<<endl;
                     if(crossInRed[can_Cross])
@@ -521,7 +528,7 @@ void Cross::cross_cars()
                         addActor(cross_s_2);
                         cross_s_2->movingON();
 
-                        checkColisions(cross_s_2,&w2,cross_e_1,&e1,cross_e_2,&e2,cross_w_1,&w1,cross_w_2,&w2);
+                        checkColisions(south,cross_s_2,&s2,cross_e_1,&e1,cross_e_2,&e2,cross_w_1,&w1,cross_w_2,&w2);
                     }else{
                         cross_s_2 = NULL;
                     }
@@ -530,7 +537,7 @@ void Cross::cross_cars()
                 }
             }else{
                 if(cross_s_2->type == BUS)
-                    checkColisions(cross_s_2,&w2,cross_e_1,&e1,cross_e_2,&e2,cross_w_1,&w1,cross_w_2,&w2);
+                    checkColisions(south,cross_s_2,&s2,cross_e_1,&e1,cross_e_2,&e2,cross_w_1,&w1,cross_w_2,&w2);
             }
         }
     }
@@ -543,7 +550,7 @@ void Cross::cross_cars()
         if(xf>x)
         {
             removeActor(cross_e_1);
-            cross_e_1->movingOFF();
+//            cross_e_1->movingOFF();
             east->pila1->push(cross_e_1);
             cross_e_1=NULL;
         }
@@ -556,7 +563,7 @@ void Cross::cross_cars()
         if(xf>x)
         {
             removeActor(cross_e_2);
-            cross_e_2->movingOFF();
+//            cross_e_2->movingOFF();
             east->pila2->push(cross_e_2);
             cross_e_2=NULL;
         }
@@ -571,7 +578,7 @@ void Cross::cross_cars()
         if(xf<x + cross_w_1->imagen->width())
         {
             removeActor(cross_w_1);
-            cross_w_1->movingOFF();
+//            cross_w_1->movingOFF();
             west->pila1->push(cross_w_1);
             cross_w_1=NULL;
         }
@@ -584,7 +591,7 @@ void Cross::cross_cars()
         if(xf<x + cross_w_2->imagen->width())
         {
             removeActor(cross_w_2);
-            cross_w_2->movingOFF();
+//            cross_w_2->movingOFF();
             west->pila2->push(cross_w_2);
             cross_w_2=NULL;
         }
@@ -599,7 +606,7 @@ void Cross::cross_cars()
         if(yf>y)
         {
             removeActor(cross_n_1);
-            cross_n_1->movingOFF();
+//            cross_n_1->movingOFF();
             north->pila1->push(cross_n_1);
             cross_n_1=NULL;
         }
@@ -612,7 +619,7 @@ void Cross::cross_cars()
         if(yf>y)
         {
             removeActor(cross_n_2);
-            cross_n_2->movingOFF();
+//            cross_n_2->movingOFF();
             north->pila2->push(cross_n_2);
             cross_n_2=NULL;
         }
@@ -627,7 +634,7 @@ void Cross::cross_cars()
         if(yf<y + cross_s_1->imagen->height())
         {
             removeActor(cross_s_1);
-            cross_s_1->movingOFF();
+//            cross_s_1->movingOFF();
             south->pila1->push(cross_s_1);
             cross_s_1=NULL;
         }
@@ -640,7 +647,7 @@ void Cross::cross_cars()
         if(yf<y + cross_s_2->imagen->height())
         {
             removeActor(cross_s_2);
-            cross_s_2->movingOFF();
+//            cross_s_2->movingOFF();
             south->pila2->push(cross_s_2);
             cross_s_2=NULL;
         }
@@ -657,7 +664,7 @@ void Cross::cross_cars()
     }
 }
 
-void Cross::checkColisions(Car *&bus, bool *b, Car *&car1, bool *c1, Car *&car2, bool *c2, Car *&car3, bool *c3, Car *&car4, bool *c4)
+void Cross::checkColisions(Street*street,Car *&bus, bool *b, Car *&car1, bool *c1, Car *&car2, bool *c2, Car *&car3, bool *c3, Car *&car4, bool *c4)
 {
     if(car1)
     {
@@ -666,10 +673,14 @@ void Cross::checkColisions(Car *&bus, bool *b, Car *&car1, bool *c1, Car *&car2,
         *c1=true;
         bus->movingOFF();
         car1->movingOFF();
+
+        bus->setPosition(*crachesPos);
+        car1->setPosition(*crachesPos);
+
         time_accident = (car1->blocks+bus->blocks)*quit_time;
         cout<<"accident_time: "<<time_accident<<endl;
         cout<<"Hubo accidente con: "<<car1->name.toStdString()<<endl;
-        logs->push(new Log(bus->name,car1->name,"dadasdsa"));
+        logs->push(new Log(bus->name,car1->name,street->cola1->direction));
     }else if(car2)
     {
         accident=true;
@@ -677,10 +688,14 @@ void Cross::checkColisions(Car *&bus, bool *b, Car *&car1, bool *c1, Car *&car2,
         *c2=true;
         bus->movingOFF();
         car2->movingOFF();
+
+        bus->setPosition(*crachesPos);
+        car2->setPosition(*crachesPos);
+
         time_accident = (car2->blocks+bus->blocks)*quit_time;
         cout<<"accident_time: "<<time_accident<<endl;
         cout<<"Hubo accidente con: "<<car2->name.toStdString()<<endl;
-        logs->push(new Log(bus->name,car2->name,"dadasdsa"));
+        logs->push(new Log(bus->name,car2->name,street->cola1->direction));
     }else if(car3)
     {
         accident=true;
@@ -688,10 +703,14 @@ void Cross::checkColisions(Car *&bus, bool *b, Car *&car1, bool *c1, Car *&car2,
         *c3=true;
         bus->movingOFF();
         car3->movingOFF();
+
+        bus->setPosition(*crachesPos);
+        car3->setPosition(*crachesPos);
+
         time_accident = (car3->blocks+bus->blocks)*quit_time;
         cout<<"accident_time: "<<time_accident<<endl;
         cout<<"Hubo accidente con: "<<car3->name.toStdString()<<endl;
-        logs->push(new Log(bus->name,car3->name,"dadasdsa"));
+        logs->push(new Log(bus->name,car3->name,street->cola1->direction));
     }else if(car4)
     {
         accident=true;
@@ -699,15 +718,19 @@ void Cross::checkColisions(Car *&bus, bool *b, Car *&car1, bool *c1, Car *&car2,
         *c4=true;
         bus->movingOFF();
         car4->movingOFF();
+
+        bus->setPosition(*crachesPos);
+        car4->setPosition(*crachesPos);
+
         time_accident = (car4->blocks+bus->blocks)*quit_time;
         cout<<"accident_time: "<<time_accident<<endl;
         cout<<"Hubo accidente con: "<<car4->name.toStdString()<<endl;
-        logs->push(new Log(bus->name,car4->name,"dadasdsa"));
+        logs->push(new Log(bus->name,car4->name,street->cola1->direction));
     }
 }
 
-Stack<Log *> Cross::getLogs()
+Stack<Log *> *Cross::getLogs()
 {
-    return *logs;
+    return logs;
 }
 

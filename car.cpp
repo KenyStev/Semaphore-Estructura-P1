@@ -159,7 +159,7 @@ Turismo::Turismo(WAY w) : Turismo()
 
 int Turismo::setMoving()
 {
-    srand(time(NULL));
+    //srand(time(NULL));
 
     int t = rand()%3 + 3;
     vxy = v/t;
@@ -188,7 +188,7 @@ Ambulancia::Ambulancia(WAY w) : Ambulancia()
 
 int Ambulancia::setMoving()
 {
-    srand(time(NULL));
+    //srand(time(NULL));
 
     int t = rand()%3 + 2;
     vxy = v/t;
@@ -217,7 +217,7 @@ Chepo::Chepo(WAY w) : Chepo()
 
 int Chepo::setMoving()
 {
-    srand(time(NULL));
+    //srand(time(NULL));
 
     int t = rand()%3 + 2;
     vxy = v/t;
@@ -246,7 +246,7 @@ Bus::Bus(WAY w) : Bus()
 
 int Bus::setMoving()
 {
-    srand(time(NULL));
+    //srand(time(NULL));
 
     int t = rand()%3 + 1;
     vxy = v/t;
@@ -276,7 +276,7 @@ Furgon::Furgon(WAY w) : Furgon()
 
 int Furgon::setMoving()
 {
-    srand(time(NULL));
+    //srand(time(NULL));
 
     int t = rand()%2 + 4;
     vxy = v/t;
