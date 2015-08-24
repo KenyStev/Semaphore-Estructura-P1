@@ -15,11 +15,13 @@ public:
 
     void onUpdate();
     void update_semaphore();
+    Stack<Log*> getLogs();
+    Stack<Log*> *logs;
 
 private:
     Street *north,*south,*east,*west;
     Background *back;
-    Stack<Log*> *logs;
+//    Stack<Log*> *logs;
 
     Car *cross_n_1,*cross_n_2;
     Car *cross_s_1,*cross_s_2;

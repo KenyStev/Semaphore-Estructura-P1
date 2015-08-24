@@ -1,6 +1,7 @@
 #ifndef STACK_H
 #define STACK_H
 #include "car.h"
+#include "log.h"
 
 template <class item>
 class Stack
@@ -73,7 +74,7 @@ public:
         way=w;
     }
 
-    ~Stack();
+    ~Stack(){}
 
     void push(Car* log)
     {
@@ -98,6 +99,64 @@ public:
     }
 
     Car* top()
+    {
+        return Top;
+    }
+
+    void clear()
+    {
+        if(Top)
+        {
+            delete pop();
+            clear();
+        }
+    }
+
+    void clean()
+    {
+        if(Top)
+        {
+            pop();
+            clean();
+        }
+    }
+};
+
+template <>
+class Stack <Log*> {
+public:
+    Log*Top;
+
+    Stack()
+    {
+        Top = NULL;
+    }
+
+    ~Stack(){}
+
+    void push(Log* log)
+    {
+        if(!Top)
+        {
+            Top = log;
+        }else{
+            Log* tmp = log;
+            tmp->next = Top;
+            Top = tmp;
+        }
+    }
+
+    Log* pop()
+    {
+        if(!Top)
+            return NULL;
+        Log* tmp = Top;
+        Top = Top->next;
+        tmp->next = NULL;
+        return tmp;
+    }
+
+    Log* top()
     {
         return Top;
     }

@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     street.cpp \
     semaphore.cpp \
     cross.cpp \
-    background.cpp
+    background.cpp \
+    logsview.cpp
 
 HEADERS  += widget.h \
     myitem.h \
@@ -36,9 +37,11 @@ HEADERS  += widget.h \
     street.h \
     semaphore.h \
     cross.h \
-    background.h
+    background.h \
+    logsview.h
 
-FORMS    += widget.ui
+FORMS    += widget.ui \
+    logsview.ui
 
 QMAKE_CXXFLAGS += -std=gnu++11
 

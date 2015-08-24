@@ -81,4 +81,6 @@ widget::~widget()
 void widget::on_actionLogs_triggered()
 {
     //llamar logs widget
+    LogsView *logs = new LogsView(cross->logs);
+    logs->show();
 }

@@ -6,6 +6,7 @@
 #include <QWidget>
 #include"background.h"
 #include "cross.h"
+#include "logsview.h"
 
 namespace Ui {
 class widget;

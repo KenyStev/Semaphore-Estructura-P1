@@ -669,6 +669,7 @@ void Cross::checkColisions(Car *&bus, bool *b, Car *&car1, bool *c1, Car *&car2,
         time_accident = (car1->blocks+bus->blocks)*quit_time;
         cout<<"accident_time: "<<time_accident<<endl;
         cout<<"Hubo accidente con: "<<car1->name.toStdString()<<endl;
+        logs->push(new Log(bus->name,car1->name,"dadasdsa"));
     }else if(car2)
     {
         accident=true;
@@ -679,6 +680,7 @@ void Cross::checkColisions(Car *&bus, bool *b, Car *&car1, bool *c1, Car *&car2,
         time_accident = (car2->blocks+bus->blocks)*quit_time;
         cout<<"accident_time: "<<time_accident<<endl;
         cout<<"Hubo accidente con: "<<car2->name.toStdString()<<endl;
+        logs->push(new Log(bus->name,car2->name,"dadasdsa"));
     }else if(car3)
     {
         accident=true;
@@ -689,6 +691,7 @@ void Cross::checkColisions(Car *&bus, bool *b, Car *&car1, bool *c1, Car *&car2,
         time_accident = (car3->blocks+bus->blocks)*quit_time;
         cout<<"accident_time: "<<time_accident<<endl;
         cout<<"Hubo accidente con: "<<car3->name.toStdString()<<endl;
+        logs->push(new Log(bus->name,car3->name,"dadasdsa"));
     }else if(car4)
     {
         accident=true;
@@ -699,6 +702,12 @@ void Cross::checkColisions(Car *&bus, bool *b, Car *&car1, bool *c1, Car *&car2,
         time_accident = (car4->blocks+bus->blocks)*quit_time;
         cout<<"accident_time: "<<time_accident<<endl;
         cout<<"Hubo accidente con: "<<car4->name.toStdString()<<endl;
+        logs->push(new Log(bus->name,car4->name,"dadasdsa"));
     }
+}
+
+Stack<Log *> Cross::getLogs()
+{
+    return *logs;
 }
 
