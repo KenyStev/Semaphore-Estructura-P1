@@ -23,6 +23,8 @@ void Queue::push(Car * car)
     }else{
         if(car->priority)
         {
+            if(car->type==BUS)
+                car->checked=false;
             car->next = First;
             First = car;
         }else{

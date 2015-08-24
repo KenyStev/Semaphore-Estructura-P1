@@ -47,9 +47,10 @@ Car *Street::getNewCar()
                 newCar = new Furgon(way);
                 break;
             }
-            if(way!=IZQ){ //probando buses
+//            if(way!=IZQ && way!=DER){ //probando buses
             newCar->setPosition(*posColas[0]);
-            cola1->push(newCar);}
+            cola1->push(newCar);
+//            }
             break;
         case 2:
             switch (which_car) {
@@ -69,8 +70,10 @@ Car *Street::getNewCar()
                 newCar = new Furgon(way);
                 break;
             }
+//            if(way!=IZQ && way!=DER){ //probando buses
             newCar->setPosition(*posColas[1]);
             cola2->push(newCar);
+//            }
             break;
         }
     }
