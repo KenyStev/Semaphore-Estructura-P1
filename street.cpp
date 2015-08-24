@@ -47,7 +47,7 @@ Car *Street::getNewCar()
                 newCar = new Furgon(way);
                 break;
             }
-//            if(way!=IZQ && way!=DER){ //probando buses
+//            if(way!=UP && way!=DOWN){ //probando buses
             newCar->setPosition(*posColas[0]);
             cola1->push(newCar);
 //            }
@@ -70,7 +70,7 @@ Car *Street::getNewCar()
                 newCar = new Furgon(way);
                 break;
             }
-//            if(way!=IZQ && way!=DER){ //probando buses
+//            if(way!=UP && way!=DOWN){ //probando buses
             newCar->setPosition(*posColas[1]);
             cola2->push(newCar);
 //            }
